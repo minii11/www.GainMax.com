@@ -19,22 +19,22 @@
             color: white;
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Adjusted for better layout */
-            padding: 10px 20px; /* Reduced padding */
+            justify-content: center; /* Center company name */
+            padding: 5px 10px; /* Reduced padding for thinner header */
             position: relative;
             z-index: 1001;
         }
 
         header img {
             height: 40px;
-            margin-right: 20px; /* Added margin to prevent overflow */
+            position: absolute; /* Positioning logo at the left */
+            left: 10px;
         }
 
         .company-name {
             font-size: 24px;
             font-weight: bold;
             text-align: center;
-            flex-grow: 1; /* Ensures the name takes available space */
             margin: 0; /* Removed margin for proper centering */
             text-shadow: 0 0 10px white, 0 0 20px white;
             animation: glow 1.5s infinite alternate;
@@ -180,7 +180,7 @@
         }
 
         .content-section {
-            margin: 20px auto; /* Adjusting for mobile display */
+            margin: 10px auto; /* Adjusting for mobile display */
             max-width: 600px; /* Limit width for better readability */
             padding: 10px; /* Padding for content section */
         }
@@ -286,16 +286,7 @@
             sidebar.classList.remove('active');
         }
     });
-
-    // Close the sidebar when clicking outside of it
-    document.addEventListener('click', function () {
-        const sidebar = document.getElementById('sidebar');
-        if (sidebar.classList.contains('active')) {
-            sidebar.classList.remove('active');
-        }
-    });
 </script>
 </body>
 
 </html>
-
