@@ -19,7 +19,7 @@
             color: white;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center; /* Centering company name */
             padding: 10px 20px;
             position: relative;
             z-index: 1001;
@@ -27,17 +27,19 @@
 
         header img {
             height: 40px;
-            flex-shrink: 0;
+            position: absolute; /* Position logo in top left */
+            left: 20px;
+            top: 10px;
         }
 
         .company-name {
             font-size: 24px;
             font-weight: bold;
             text-align: center;
-            flex-grow: 1;
             text-shadow: 0 0 10px white, 0 0 20px white;
             animation: glow 1.5s infinite alternate;
             margin: 0 10px;
+            flex-grow: 1; /* Ensuring the name is centered */
         }
 
         @keyframes glow {
@@ -74,7 +76,9 @@
         .sidebar-button {
             cursor: pointer;
             font-size: 24px;
-            flex-shrink: 0;
+            position: absolute; /* Sidebar button on top right */
+            right: 20px;
+            top: 10px;
         }
 
         .reveal-message {
@@ -102,6 +106,8 @@
             display: flex;
             flex-direction: column;
             align-items: stretch;
+            margin: 0 auto; /* Centering the form */
+            max-width: 300px; /* Adjusting width for smaller screens */
         }
 
         .login-form input,
@@ -138,23 +144,7 @@
         .content-image {
             width: 100%;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .get-started-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(255, 0, 0, 0.7);
-            color: white;
-            font-weight: bold;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            transition: background-color 0.3s, transform 0.2s;
+            border-radius: 0; /* Rectangular corners */
         }
 
         @media (max-width: 600px) {
@@ -176,8 +166,12 @@
                 align-self: flex-end;
             }
 
-            section {
-                padding: 0 15px;
+            .login-form {
+                margin-top: 20px; /* Adding margin to adjust position */
+            }
+
+            .content-image {
+                margin-top: 10px; /* Adjusting image margin */
             }
         }
     </style>
@@ -211,7 +205,8 @@
 <section style="position: relative; text-align: center; margin-bottom: 20px;">
     <img src="image main.jpg" alt="Your Image" class="content-image">
 
-    <a href="#login" onclick="showMessage(); return false;" class="get-started-btn">
+    <a href="#login" onclick="showMessage(); return false;"
+       style="display: inline-block; margin-top: -50px; background-color: rgba(255, 0, 0, 0.7); color: white; font-weight: bold; padding: 12px 25px; border-radius: 5px; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); transition: background-color 0.3s, transform 0.2s;">
         Get Started
     </a>
 
@@ -281,3 +276,4 @@
 
 </body>
 </html>
+
