@@ -19,7 +19,7 @@
             color: white;
             display: flex;
             align-items: center;
-            justify-content: center; /* Centering company name */
+            justify-content: space-between; /* Changed to space-between for proper alignment */
             padding: 10px 20px;
             position: relative;
             z-index: 1001;
@@ -27,9 +27,7 @@
 
         header img {
             height: 40px;
-            position: absolute; /* Position logo in top left */
-            left: 20px;
-            top: 10px;
+            margin-right: 20px; /* Added margin to prevent overflow */
         }
 
         .company-name {
@@ -38,8 +36,8 @@
             text-align: center;
             text-shadow: 0 0 10px white, 0 0 20px white;
             animation: glow 1.5s infinite alternate;
-            margin: 0 10px;
-            flex-grow: 1; /* Ensuring the name is centered */
+            flex-grow: 1; /* Ensures the name takes available space */
+            margin: 0; /* Removed margin to improve centering */
         }
 
         @keyframes glow {
@@ -150,12 +148,14 @@
         @media (max-width: 600px) {
             header {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center; /* Centering header items vertically */
                 text-align: center;
+                padding: 5px 10px; /* Reduced padding for mobile */
             }
 
             .company-name {
                 font-size: 20px;
+                margin: 0; /* Ensure no margin for proper centering */
             }
 
             .sidebar {
@@ -167,11 +167,16 @@
             }
 
             .login-form {
-                margin-top: 20px; /* Adding margin to adjust position */
+                margin-top: 10px; /* Adjusting margin for mobile */
+                max-width: 90%; /* Ensuring form fits mobile */
             }
 
             .content-image {
                 margin-top: 10px; /* Adjusting image margin */
+            }
+
+            .reveal-message {
+                font-size: 16px; /* Adjusting font size for better readability */
             }
         }
     </style>
@@ -264,16 +269,14 @@
         event.stopPropagation();
     }
 
-    document.addEventListener('click', function (event) {
+    document.addEventListener('click', function () {
         const sidebar = document.getElementById('sidebar');
-        const sidebarButton = document.querySelector('.sidebar-button');
-
-        if (sidebar.classList.contains('active') && !sidebar.contains(event.target) && !sidebarButton.contains(event.target)) {
+        if (sidebar.classList.contains('active')) {
             sidebar.classList.remove('active');
         }
     });
 </script>
-
 </body>
+
 </html>
 
