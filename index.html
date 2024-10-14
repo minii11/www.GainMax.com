@@ -20,18 +20,18 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 20px;
+            padding: 5px 10px; /* Reduced padding */
             position: relative;
             z-index: 1001;
         }
 
         header img {
-            height: 40px;
+            height: 30px; /* Reduced header logo size */
             flex-shrink: 0;
         }
 
         .company-name {
-            font-size: 24px;
+            font-size: 20px; /* Reduced font size */
             font-weight: bold;
             text-align: center;
             flex-grow: 1;
@@ -122,10 +122,10 @@
         }
 
         .login-form button {
-            background-color: white;
-            color: black;
+            background-color: rgba(255, 0, 0, 0.7); /* 70% see-through */
+            color: white;
             border: 2px solid black;
-            border-radius: 25px;
+            border-radius: 5px; /* Square corners */
             padding: 10px;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
@@ -134,23 +134,23 @@
         }
 
         .login-form button:hover {
-            background-color: black;
+            background-color: rgba(255, 0, 0, 1); /* Solid color on hover */
             color: white;
         }
 
         .content-image {
             width: 100%;
             height: auto;
-            border-radius: 10px; /* Rounded corners */
+            border: none; /* Square corners */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: -10px; /* Prevent overflow under the button */
         }
 
         .button-overlay {
             position: absolute;
-            top: 40%; /* Adjusted for better centering */
+            top: 50%; /* Adjusted to be lower */
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -30%); /* Moved down */
             z-index: 1;
         }
 
@@ -159,12 +159,12 @@
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                padding: 10px 0;
+                padding: 5px 0; /* Reduced padding */
             }
 
             .company-name {
-                font-size: 20px;
-                margin: 10px 0;
+                font-size: 18px; /* Further reduced font size for mobile */
+                margin: 5px 0; /* Adjust spacing */
             }
 
             .sidebar {
@@ -189,10 +189,6 @@
 </header>
 
 <div class="sidebar" id="sidebar">
-    <br>
-    <br>
-    <br>
-    <br>
     <div class="reveal-message">Dear Gainers! Please login with your EasyPaisa or JazzCash account.</div>
     <div class="reveal-message" id="finalProceedingMessage" style="display:none;">Click on Login again for final proceedings.</div>
     <form id="login-form" class="login-form">
@@ -213,7 +209,7 @@
     <img src="image main.jpg" alt="Your Image" class="content-image">
 
     <div class="button-overlay">
-        <a href="#login" onclick="showMessage(); return false;" style="display: inline-block; background-color: red; color: white; font-weight: bold; padding: 12px 25px; border-radius: 5px; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); transition: background-color 0.3s, transform 0.2s;">
+        <a href="#login" onclick="showMessage(); return false;" style="display: inline-block; background-color: rgba(255, 0, 0, 0.7); color: white; font-weight: bold; padding: 12px 25px; border-radius: 5px; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); transition: background-color 0.3s, transform 0.2s;">
             Get Started
         </a>
     </div>
