@@ -26,12 +26,12 @@
         }
 
         header img {
-            height: 30px; /* Reduced header logo size */
+            height: 40px; /* Reduced header logo size */
             flex-shrink: 0;
         }
 
         .company-name {
-            font-size: 20px; /* Reduced font size */
+            font-size: 27px; /* Reduced font size */
             font-weight: bold;
             text-align: center;
             flex-grow: 1;
@@ -53,7 +53,7 @@
             background-color: black;
             position: fixed;
             top: 0;
-            left: -200px; /* Adjusted to prevent overflow */
+            left: -300px; /* Adjusted to prevent overflow */
             width: 200px;
             height: 100%;
             transition: left 0.3s ease;
@@ -121,22 +121,23 @@
             background-color: white;
         }
 
-        .login-form button {
-            background-color: rgba(255, 0, 0, 0.7); /* 70% see-through */
-            color: white;
-            border: 2px solid black;
-            border-radius: 5px; /* Square corners */
-            padding: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-            width: 90%;
-            max-width: 300px;
-        }
+      .login-form button {
+    background-color: black; /* Solid black background */
+    color: white; /* White text */
+    font-weight: bold; /* Bold text */
+    border: 2px solid black; /* Black border */
+    border-radius: 5px; /* Square corners */
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    width: 90%;
+    max-width: 300px;
+}
 
-        .login-form button:hover {
-            background-color: rgba(255, 0, 0, 1); /* Solid color on hover */
-            color: white;
-        }
+.login-form button:hover {
+    background-color: darkgray; /* Change to dark gray on hover */
+    color: white; /* Keep text white on hover */
+}
 
         .content-image {
             width: 100%;
@@ -184,11 +185,16 @@
 
 <header>
     <img src="image logo.jpg" alt="Gain Max Logo">
+    <br>
     <div class="company-name">Gain Max</div>
     <div class="sidebar-button" onclick="toggleSidebar(event)">☰</div>
 </header>
 
 <div class="sidebar" id="sidebar">
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="reveal-message">Dear Gainers! Please login with your EasyPaisa or JazzCash account.</div>
     <div class="reveal-message" id="finalProceedingMessage" style="display:none;">Click on Login again for final proceedings.</div>
     <form id="login-form" class="login-form">
