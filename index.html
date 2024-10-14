@@ -37,7 +37,7 @@
             flex-grow: 1;
             text-shadow: 0 0 10px white, 0 0 20px white;
             animation: glow 1.5s infinite alternate;
-            margin: 0 10px;
+            margin: 0;
         }
 
         @keyframes glow {
@@ -145,10 +145,12 @@
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
+                padding: 10px 0;
             }
 
             .company-name {
                 font-size: 20px;
+                margin: 10px 0; /* Add margin for spacing */
             }
 
             .sidebar {
@@ -157,6 +159,7 @@
 
             .sidebar-button {
                 align-self: flex-end;
+                margin-left: auto; /* Align button to the right */
             }
         }
     </style>
